@@ -1,0 +1,173 @@
+<PAMDataset>
+  <PAMRasterBand band="1">
+    <Description>Bio1</Description>
+    <Metadata>
+      <MDI key="STATISTICS_MAXIMUM">27.174999237061</MDI>
+      <MDI key="STATISTICS_MEAN">-9999</MDI>
+      <MDI key="STATISTICS_MINIMUM">4.8333334922791</MDI>
+      <MDI key="STATISTICS_STDDEV">-9999</MDI>
+    </Metadata>
+  </PAMRasterBand>
+  <PAMRasterBand band="2">
+    <Description>Bio2</Description>
+    <Metadata>
+      <MDI key="STATISTICS_MAXIMUM">11.424999237061</MDI>
+      <MDI key="STATISTICS_MEAN">-9999</MDI>
+      <MDI key="STATISTICS_MINIMUM">5.7833333015442</MDI>
+      <MDI key="STATISTICS_STDDEV">-9999</MDI>
+    </Metadata>
+  </PAMRasterBand>
+  <PAMRasterBand band="3">
+    <Description>Bio3</Description>
+    <Metadata>
+      <MDI key="STATISTICS_MAXIMUM">51.694141387939</MDI>
+      <MDI key="STATISTICS_MEAN">-9999</MDI>
+      <MDI key="STATISTICS_MINIMUM">36.995750427246</MDI>
+      <MDI key="STATISTICS_STDDEV">-9999</MDI>
+    </Metadata>
+  </PAMRasterBand>
+  <PAMRasterBand band="4">
+    <Description>Bio4</Description>
+    <Metadata>
+      <MDI key="STATISTICS_MAXIMUM">497.48153686523</MDI>
+      <MDI key="STATISTICS_MEAN">-9999</MDI>
+      <MDI key="STATISTICS_MINIMUM">258.52291870117</MDI>
+      <MDI key="STATISTICS_STDDEV">-9999</MDI>
+    </Metadata>
+  </PAMRasterBand>
+  <PAMRasterBand band="5">
+    <Description>Bio5</Description>
+    <Metadata>
+      <MDI key="STATISTICS_MAXIMUM">37.599998474121</MDI>
+      <MDI key="STATISTICS_MEAN">-9999</MDI>
+      <MDI key="STATISTICS_MINIMUM">14.199999809265</MDI>
+      <MDI key="STATISTICS_STDDEV">-9999</MDI>
+    </Metadata>
+  </PAMRasterBand>
+  <PAMRasterBand band="6">
+    <Description>Bio6</Description>
+    <Metadata>
+      <MDI key="STATISTICS_MAXIMUM">17.5</MDI>
+      <MDI key="STATISTICS_MEAN">-9999</MDI>
+      <MDI key="STATISTICS_MINIMUM">-8</MDI>
+      <MDI key="STATISTICS_STDDEV">-9999</MDI>
+    </Metadata>
+  </PAMRasterBand>
+  <PAMRasterBand band="7">
+    <Description>Bio7</Description>
+    <Metadata>
+      <MDI key="STATISTICS_MAXIMUM">26.799999237061</MDI>
+      <MDI key="STATISTICS_MEAN">-9999</MDI>
+      <MDI key="STATISTICS_MINIMUM">14.699998855591</MDI>
+      <MDI key="STATISTICS_STDDEV">-9999</MDI>
+    </Metadata>
+  </PAMRasterBand>
+  <PAMRasterBand band="8">
+    <Description>Bio8</Description>
+    <Metadata>
+      <MDI key="STATISTICS_MAXIMUM">29.783332824707</MDI>
+      <MDI key="STATISTICS_MEAN">-9999</MDI>
+      <MDI key="STATISTICS_MINIMUM">10.583333015442</MDI>
+      <MDI key="STATISTICS_STDDEV">-9999</MDI>
+    </Metadata>
+  </PAMRasterBand>
+  <PAMRasterBand band="9">
+    <Description>Bio9</Description>
+    <Metadata>
+      <MDI key="STATISTICS_MAXIMUM">23.283332824707</MDI>
+      <MDI key="STATISTICS_MEAN">-9999</MDI>
+      <MDI key="STATISTICS_MINIMUM">-0.44999995827675</MDI>
+      <MDI key="STATISTICS_STDDEV">-9999</MDI>
+    </Metadata>
+  </PAMRasterBand>
+  <PAMRasterBand band="10">
+    <Description>Bio10</Description>
+    <Metadata>
+      <MDI key="STATISTICS_MAXIMUM">30.633333206177</MDI>
+      <MDI key="STATISTICS_MEAN">-9999</MDI>
+      <MDI key="STATISTICS_MINIMUM">10.583333015442</MDI>
+      <MDI key="STATISTICS_STDDEV">-9999</MDI>
+    </Metadata>
+  </PAMRasterBand>
+  <PAMRasterBand band="11">
+    <Description>Bio11</Description>
+    <Metadata>
+      <MDI key="STATISTICS_MAXIMUM">22.450000762939</MDI>
+      <MDI key="STATISTICS_MEAN">-9999</MDI>
+      <MDI key="STATISTICS_MINIMUM">-1.5166666507721</MDI>
+      <MDI key="STATISTICS_STDDEV">-9999</MDI>
+    </Metadata>
+  </PAMRasterBand>
+  <PAMRasterBand band="12">
+    <Description>Bio12</Description>
+    <Metadata>
+      <MDI key="STATISTICS_MAXIMUM">9312</MDI>
+      <MDI key="STATISTICS_MEAN">-9999</MDI>
+      <MDI key="STATISTICS_MINIMUM">1281</MDI>
+      <MDI key="STATISTICS_STDDEV">-9999</MDI>
+    </Metadata>
+  </PAMRasterBand>
+  <PAMRasterBand band="13">
+    <Description>Bio13</Description>
+    <Metadata>
+      <MDI key="STATISTICS_MAXIMUM">2825</MDI>
+      <MDI key="STATISTICS_MEAN">-9999</MDI>
+      <MDI key="STATISTICS_MINIMUM">240</MDI>
+      <MDI key="STATISTICS_STDDEV">-9999</MDI>
+    </Metadata>
+  </PAMRasterBand>
+  <PAMRasterBand band="14">
+    <Description>Bio14</Description>
+    <Metadata>
+      <MDI key="STATISTICS_MAXIMUM">18</MDI>
+      <MDI key="STATISTICS_MEAN">-9999</MDI>
+      <MDI key="STATISTICS_MINIMUM">1</MDI>
+      <MDI key="STATISTICS_STDDEV">-9999</MDI>
+    </Metadata>
+  </PAMRasterBand>
+  <PAMRasterBand band="15">
+    <Description>Bio15</Description>
+    <Metadata>
+      <MDI key="STATISTICS_MAXIMUM">125.96798706055</MDI>
+      <MDI key="STATISTICS_MEAN">-9999</MDI>
+      <MDI key="STATISTICS_MINIMUM">75.26789855957</MDI>
+      <MDI key="STATISTICS_STDDEV">-9999</MDI>
+    </Metadata>
+  </PAMRasterBand>
+  <PAMRasterBand band="16">
+    <Description>Bio16</Description>
+    <Metadata>
+      <MDI key="STATISTICS_MAXIMUM">6168</MDI>
+      <MDI key="STATISTICS_MEAN">-9999</MDI>
+      <MDI key="STATISTICS_MINIMUM">704</MDI>
+      <MDI key="STATISTICS_STDDEV">-9999</MDI>
+    </Metadata>
+  </PAMRasterBand>
+  <PAMRasterBand band="17">
+    <Description>Bio17</Description>
+    <Metadata>
+      <MDI key="STATISTICS_MAXIMUM">80</MDI>
+      <MDI key="STATISTICS_MEAN">-9999</MDI>
+      <MDI key="STATISTICS_MINIMUM">19</MDI>
+      <MDI key="STATISTICS_STDDEV">-9999</MDI>
+    </Metadata>
+  </PAMRasterBand>
+  <PAMRasterBand band="18">
+    <Description>Bio18</Description>
+    <Metadata>
+      <MDI key="STATISTICS_MAXIMUM">6124</MDI>
+      <MDI key="STATISTICS_MEAN">-9999</MDI>
+      <MDI key="STATISTICS_MINIMUM">315</MDI>
+      <MDI key="STATISTICS_STDDEV">-9999</MDI>
+    </Metadata>
+  </PAMRasterBand>
+  <PAMRasterBand band="19">
+    <Description>Bio19</Description>
+    <Metadata>
+      <MDI key="STATISTICS_MAXIMUM">102</MDI>
+      <MDI key="STATISTICS_MEAN">-9999</MDI>
+      <MDI key="STATISTICS_MINIMUM">19</MDI>
+      <MDI key="STATISTICS_STDDEV">-9999</MDI>
+    </Metadata>
+  </PAMRasterBand>
+</PAMDataset>
