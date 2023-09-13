@@ -23,7 +23,7 @@ bio <- bio[[c(2,3,9,15,18,19)]]  #Selected Bio
 
 # Collect random absence points within Bangladesh
 set.seed(11)
-bg_df <- spatSample( bio, 1000, "random", cells=F, xy=TRUE, values=FALSE, as.df=TRUE, na.rm=T)
+bg_df <- spatSample(bio, 10000, "random", cells=F, xy=TRUE, values=FALSE, as.df=TRUE, na.rm=T)
 
 # Prepare a SWD object for model building
 data <- prepareSWD(species="Chromolaena odorata",
@@ -43,12 +43,12 @@ hist(bio)
 
 
 # Split presence locations in training (80%) and testing (20%) datasets
-datasets <- trainValTest(data, test = 0.2, only_presence = TRUE, seed = 25)
+datasets <- trainValTest(data, test = 0.3, only_presence = TRUE, seed = 25)
 train <- datasets[[1]]
 test <- datasets[[2]]
 
 # Train a RF model
-model <- train(method = "RF", data = train)
+model <- train(method = "RF", data = train, ntree= 1, mtry=3)
 cat("Training auc: ", auc(model))
 cat("Testing auc: ", auc(model, test = test))
 plotVarImp(varImp(model, permut = 5),color = "green")
@@ -68,12 +68,13 @@ plotPA(map, th = ths[3, 2])
 
 #### K-FOld ####################################################################################
 # Create the folds from the training dataset
-folds <- randomFolds(test,k = 4, only_presence = TRUE,seed = 25)
+folds <- randomFolds(train,k = 4, only_presence = TRUE,seed = 25)
 # Train the model
-cv_model <- train(method = "RF", data = test, folds = folds)
+cv_model <- train(method = "RF", data = train, folds = folds, ntree= 1, mtry=3)
 cat("Training auc: ", auc(cv_model))
 cat("Testing auc: ", auc(cv_model, test = test))
-h_rf <- list(mtry= seq(2,8,1),ntree= seq(100,1000,10),nodesize= 1)
+#h_rf <- list(mtry= seq(2,8,1),ntree= seq(100,1000,10),nodesize= 1)
+h_rf <- list(mtry= seq(1,4,1),ntree= seq(1,50,1), nodesize= 2)
 exp_8 <- randomSearch(cv_model,hypers = h_rf,metric = "auc",pop = 50,seed = 65466)
 head(exp_8@results[order(-exp_8@results$test_AUC), ])  # Best combinations
 
@@ -86,11 +87,15 @@ plotPred(predRF, lt = "Habitat\nsuitability",colorramp = c("#2c7bb6", "#abd9e9",
 ############################################################################
 #### K-FOld ####################################################################################
 
-# Define the hyperparameters to test for Maxnet
+
+
+# Hyperparameters to test start ###############################################
 #h <- list(reg = seq(0.1, 3, 0.1), fc = c("lq", "lh", "lqp", "lqph", "lqpht"))
 
 ##FOR R
-h <- list(mtry = seq(2,8,1), ntree= seq(100,1000,10),nodesize  = 1)
+#h <- list(mtry = seq(2,8,1), ntree= seq(100,1000,10),nodesize  = 1)
+
+h <- list(mtry= seq(1,4,1),ntree= seq(1,50,1), nodesize= 1)
 
 # Test all the possible combinations with gridSearch
 gs <- gridSearch(model, hypers = h, metric = "auc", test = test)
@@ -104,7 +109,7 @@ plotROC(gs@models[[1]], test = test)
 predRF <- predict(gs@models[[1]], data = bio, type = "cloglog")
 plotPred(predRF, lt = "Habitat\nsuitability",colorramp = c("#2c7bb6", "#abd9e9", "#ffffbf", "#fdae61", "#d7191c"))
 ############################################################################
-
+# Hyperparameters to test end ###############################################
 
 
 
@@ -115,8 +120,6 @@ plotPred(predRF, lt = "Habitat\nsuitability",colorramp = c("#2c7bb6", "#abd9e9",
 # Use the genetic algorithm instead with optimizeModel
 om <- optimizeModel(model, hypers = h, metric = "auc", test = test, seed = 4)
 head(om@results)  # Best combinations
-
-
 
 
 pred <- predict(model, data = data, type = "cloglog")
@@ -130,3 +133,4 @@ plotPred(map)
 (ths <- thresholds(model, type = "cloglog"))
 plotPA(map, th = ths[3, 2])
 #ggsave("./result/maxnet/Maxnet_presence_absence.png",dpi=300,width = 8,height = 5)
+
