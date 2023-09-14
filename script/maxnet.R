@@ -40,8 +40,6 @@ hist(bio)
 
 
 
-
-
 # Split presence locations in training (80%) and testing (20%) datasets
 datasets <- trainValTest(data, test = 0.2, only_presence = TRUE, seed = 25)
 train <- datasets[[1]]
@@ -52,43 +50,51 @@ model <- train(method = "Maxnet", data = train)
 cat("Training auc: ", auc(model))
 cat("Testing auc: ", auc(model, test = test))
 plotVarImp(varImp(model, permut = 5),color = "green")
-#ggsave("./result/RF/RF_plotVarImp.jpg",dpi=300,width = 8,height = 5)
+#ggsave("./result/maxnet/plotVarImp_MaxnetModel1.jpg",dpi=300,width = 8,height = 5)
 plotROC(model, test = test)
-#ggsave("./result/RF/RF_train_plotROC.jpg",dpi=300,width = 8,height = 5)
+#ggsave("./result/maxnet/plotROC_model_1.jpg",dpi=300,width = 8,height = 5)
 
-pred <- predict(model, data = data,type = "cloglog")
+pred <- predict(model, data = train,type = "cloglog")
 map <- predict(model, data = bio,type = "cloglog")
+#writeRaster(map,filename = "./result/maxnet/raster/predict_bio/predict_bio.grd",overwrite=T)
+#writeRaster(map,filename = "./result/maxnet/raster/predict_train/predict_train.grd",overwrite=T)
 plotPred(map)
-#ggsave("./result/RF/RF_Predict_Map.jpg",dpi=300,width = 8,height = 5)
+#ggsave("./result/maxnet/Predict_Map1.jpg",dpi=300,width = 8,height = 5)
 
 (ths <- thresholds(model, type = "logistic", test = test))
 plotPA(map, th = ths[3, 2])
-#ggsave("./result/RF/RF_Thresholds.jpg",dpi=300,width = 8,height = 5)
+#ggsave("./result/maxnet/Thresholds1.jpg",dpi=300,width = 8,height = 5)
 
 
 #### K-FOld ####################################################################################
 # Create the folds from the training dataset
 folds <- randomFolds(test,k = 4, only_presence = TRUE,seed = 25)
 # Train the model
-cv_model <- train(method = "Maxnet", data = test, folds = folds)
+cv_model <- train(method = "Maxnet", data = train, folds = folds)
 cat("Training auc: ", auc(cv_model))
 cat("Testing auc: ", auc(cv_model, test = test))
-h_rf <- list(reg = seq(0.1, 3, 0.1), fc = c("lq", "lh", "lqp", "lqph", "lqpht"))
-exp_8 <- randomSearch(cv_model,hypers = h_rf,metric = "auc",pop = 50,seed = 65466)
-head(exp_8@results[order(-exp_8@results$test_AUC), ])  # Best combinations
+m <- combineCV(cv_model)
+plotROC(m, test=test)
+#ggsave("./result/maxnet/plotRoc_Kfold.jpg",dpi=300,width = 8,height = 5)
+
+
+# h_rf <- list(reg = seq(0.1, 3, 0.1), fc = c("lq", "lh", "lqp", "lqph", "lqpht"))
+# exp_8 <- randomSearch(cv_model,hypers = h_rf,metric = "auc",pop = 50,seed = 65466)
+# head(exp_8@results[order(-exp_8@results$test_AUC), ])  # Best combinations
 
 ############################################################################
 ##Select First Model
-exp_8@models[[1]]
-# Train for Random Forest
-predRF <- predict(exp_8@models[[1]], data = bio, type = "cloglog")
-plotPred(predRF, lt = "Habitat\nsuitability",colorramp = c("#2c7bb6", "#abd9e9", "#ffffbf", "#fdae61", "#d7191c"))
+# exp_8@models[[1]]
+# # Train for Random Forest
+# predRF <- predict(exp_8@models[[1]], data = bio, type = "cloglog")
+# plotPred(predRF, lt = "Habitat\nsuitability",colorramp = c("#2c7bb6", "#abd9e9", "#ffffbf", "#fdae61", "#d7191c"))
 ############################################################################
 #### K-FOld ####################################################################################
 
-# Define the hyperparameters to test for Maxnet
-#h <- list(reg = seq(0.1, 3, 0.1), fc = c("lq", "lh", "lqp", "lqph", "lqpht"))
 
+
+
+# Define the hyperparameters to test for Maxnet
 ##FOR R
 h <- list(reg = seq(0.1, 3, 0.1), fc = c("lq", "lh", "lqp", "lqph", "lqpht"))
 
@@ -100,33 +106,32 @@ head(gs@results[order(-gs@results$test_AUC), ])  # Best combinations
 ##Select First Model
 gs@models[[1]]
 plotROC(gs@models[[1]], test = test)
-# Train for Random Forest
+#ggsave("./result/maxnet/plotRoc_afterHyperParameterTune1.jpg",dpi=300,width = 8,height = 5)
+
+# Train Maxnet
 predRF <- predict(gs@models[[1]], data = bio, type = "cloglog")
 plotPred(predRF, lt = "Habitat\nsuitability",colorramp = c("#2c7bb6", "#abd9e9", "#ffffbf", "#fdae61", "#d7191c"))
+#ggsave("./result/maxnet/map_after_Hyparameter_tune.jpg",dpi=300,width = 8,height = 5)
+
 ############################################################################
 
 
 
 
-
-
-
-
-# Use the genetic algorithm instead with optimizeModel
+####### Use the genetic algorithm instead with optimizeModel start ####### 
 om <- optimizeModel(model, hypers = h, metric = "auc", test = test, seed = 4)
 head(om@results)  # Best combinations
 
-
-
-
-pred <- predict(model, data = data, type = "cloglog")
+pred <- predict(model, data = bio, type = "cloglog")
 head(pred)
 p <- data@data[data@pa == 1, ]
 pred <- predict(model,data = p,type = "cloglog")
 tail(pred)
 map <- predict(model, data = bio, type = "cloglog")
 plotPred(map)
-#ggsave("./result/maxnet/Maxnet_without_train.png",dpi=300,width = 8,height = 5)
+#ggsave("./result/maxnet/map_after_optimizeModel.png",dpi=300,width = 8,height = 5)
 (ths <- thresholds(model, type = "cloglog"))
 plotPA(map, th = ths[3, 2])
-#ggsave("./result/maxnet/Maxnet_presence_absence.png",dpi=300,width = 8,height = 5)
+#ggsave("./result/maxnet/presence_absence_after_optimizeModel.png",dpi=300,width = 8,height = 5)
+
+####### Use the genetic algorithm instead with optimizeModel end ####### 
