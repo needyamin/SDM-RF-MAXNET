@@ -42,8 +42,15 @@ y_min <- 20.60
 x_max <- 92.7
 x_min <- 87.96
 
-boundary <- ext(x_min,x_max,y_min,y_max)
+# Calculate the height and width of the rectangle
+height_km <- y_max - y_min
+width_km <- x_max - x_min
+# Calculate the area in square kilometers
+area_km2 <- height_km * width_km
+# Print the result
+cat("The area is", area_km2, "KM^2\n")
 
+boundary <- ext(x_min,x_max,y_min,y_max)
 plot(ind_0)
 plot(boundary,add=T,lty=2)
 
