@@ -1,5 +1,5 @@
 # SDM-RF-MAXNET
-Species distribution modelling (SDM) with Random Forest and MaxNet 
+Species distribution modelling (SDM) with Random Forest and MaxNet Maching Learning Algorithms
 
 # Model Report
 > You will find A to Z Report Under the `virtual-sp` folder.
