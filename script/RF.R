@@ -104,6 +104,20 @@ ggsave("./result/RF/map__optimizeModel.png",dpi=300,width = 8,height = 5)
 
 
 
+### A TO Z Model Report ####
+modelReport(YAMiN,
+            type = "cloglog",
+            folder = "virtual-sp",
+            test = test,
+            response_curves = TRUE,
+            only_presence = TRUE,
+            jk = TRUE,
+            env = bio)
+
+
+
+
+
 
 ############ EXTRA TEST CODES #####################
 # (ths <- thresholds(YAMiN, type = "cloglog"))
