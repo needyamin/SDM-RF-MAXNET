@@ -8,6 +8,7 @@ library(terra)
 library(geodata)
 library(sf)
 library(ggplot2)
+library(SDMtune)
 
 ############################ Data Prepare Start ##############################
 # the bio data sets are 19 predictors, each one image for one predictors
